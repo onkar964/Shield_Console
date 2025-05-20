@@ -15,30 +15,6 @@ public class Avenger {
 		this.missionCompleted = 0;
 	}
 
-	public String getAvengerName() {
-		return avengerName;
-	}
-
-	public void setAvengerName(String avengerName) {
-		this.avengerName = avengerName;
-	}
-
-	public String getPersonName() {
-		return personName;
-	}
-
-	public void setPersonName(String personName) {
-		this.personName = personName;
-	}
-
-	public String getAbilities() {
-		return abilities;
-	}
-
-	public void setAbilities(String abilities) {
-		this.abilities = abilities;
-	}
-
 	public int getMissionAssigned() {
 		return missionAssigned;
 	}
@@ -66,8 +42,7 @@ public class Avenger {
 
 	@Override
 	public String toString() {
-		return "Avenger [avengerName=" + avengerName + ", personName=" + personName + ", abilities=" + abilities
-				+ ", missionAssigned=" + missionAssigned + ", missionCompleted=" + missionCompleted + "]";
+		return avengerName;
 	}
 	
 

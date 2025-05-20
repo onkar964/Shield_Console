@@ -16,12 +16,13 @@ public class Shield {
 			System.out.println("No Mission has been assigned to an Avenger.");
 		}else {
 			System.out.println("Mission Name \t|Status\t|Avengers");
-			System.out.println(missions);
+			missions.values().forEach(mission->System.out.println(mission));
 		}
 	}
 	public static void assignMission() {
 		System.out.println("Enter 2 Avengers Name from below list");
-		for(String key : avengers.keySet()) {System.out.print(key+" ");}	
+		for(String key : avengers.keySet()) {System.out.print(key+", ");}	
+		System.out.println();
 		ScanOption.nextLine();
 		String name1= ScanOption.nextLine();
 		String name2= ScanOption.nextLine();
@@ -30,17 +31,32 @@ public class Shield {
 		System.out.println("Enter Mission Details: ");
 		String name4= ScanOption.nextLine();
 		List<Avenger>al=new ArrayList<>();
-		if(avengers.containsKey(name1)) {al.add(avengers.get(name1));}
-		if(avengers.containsKey(name2)) {al.add(avengers.get(name2));}
+		if(avengers.containsKey(name1)) {
+			if(avengers.get(name1).getMissionAssigned()==1) {
+				System.out.println(avengers.get(name1)+" is on mission");
+			}else {
+				avengers.get(name1).setMissionAssigned(1);
+				al.add(avengers.get(name1));
+			}	
+		}
+		if(avengers.containsKey(name2)) {
+			if(avengers.get(name2).getMissionAssigned()>=1) {
+				System.out.println(avengers.get(name2)+" is on mission");
+			}else {
+				avengers.get(name2).setMissionAssigned(1);
+				al.add(avengers.get(name2));
+			}	
+		}
 		
 		missions.put(name3, new Mission(al, name3, name4));
 		System.out.println();
 		System.out.println("Mission has been assigned.");
 		System.out.println("Email notification sent and/or");
-		System.out.println("SMS notification sent.");
+		System.out.println("SMS notification sent.\n");
 	}
 	public static void checkMissionDetails() {
 		System.out.println("Enter mission name");
+		ScanOption.nextLine();
 		String missionName= ScanOption.nextLine();
 		Mission mission = missions.get(missionName);
 		if(mission !=null) { mission.display();}
@@ -48,6 +64,7 @@ public class Shield {
 	}
 	public static void checkAvengerDetails() {
 		System.out.println("Enter avenger name");
+		ScanOption.nextLine();
 		String avengerName=ScanOption.nextLine();
 		Avenger av =avengers.get(avengerName);
 		if(av!=null) {
@@ -58,12 +75,14 @@ public class Shield {
 	}
 	public static void updateMissionSstatus() {
 		System.out.println("Enter mission name");
+		ScanOption.nextLine();
 		String missionName = ScanOption.nextLine();
 		Mission ms = missions.get(missionName);
 		if(ms!=null) {
 			System.out.println("Enter mission Status");
 			String missionStatus = ScanOption.nextLine();
 			ms.setMissionStatus(missionStatus);
+			
 			System.out.println("Mission completed Email and Sms are sent ");
 		}
 	}
